@@ -1,0 +1,305 @@
+\documentclass[11pt]{Numbertheory}
+
+\title{Number Theory}
+\subtitle{John is peeking into Numbertheory}
+
+\author{John Pink}
+\date{September 9, 2023}
+\version{4.3}
+
+\extrainfo{Victory won\rq t come to us unless we go to it. }
+
+\cover{cover.jpg}
+
+% modify the color in the middle of titlepage
+\definecolor{customcolor}{RGB}{32,178,170}
+\colorlet{coverlinecolor}{customcolor}
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+\tableofcontents
+
+\mainmatter
+
+\chapter{Natural Number}
+
+What is natural number? Just like what they are called. Long time ago, human counted numbers will like this " one, two, three, \ldots ".
+So naturally we can define natural numbers like this 
+
+\begin{definition} [Natural Number]
+    \[ \N := \{1, 2, 3, \cdots\}\]
+\end{definition}
+
+
+\section{Primes}
+\begin{theorem} [Euclid]
+    There are infinitely many primes.
+\end{theorem}
+
+\begin{proof}
+    If there is only finitely many primes, we can list them as$p_1, p_2, \cdots, p_r$. Let
+    \[ N = p_1p_2\cdots p_r + 1. \]
+    By the Fundamental Theorem of Arithmetic, N can be factorized, so it must be divisible by some prime $p_k$
+    of our list. Since $p_k$ also divides $p_1p_2\cdots p_r$, it must divide their difference
+    \[   p_k | N -  p_1p_2\cdots p_r = 1                  \]
+    which is impossible, as $p_k > 1$.  $\square$
+\end{proof}
+
+
+\chapter{Congruent}
+
+\section{Congruent}
+\begin{definition}
+    We assign two integers $a$ and $b$ which have the same remainder mod $n$ to the same residue class mod n or more 
+    simply, the same class mod n, and write
+    \[ a \equiv b (\bmod \ n)\]
+\end{definition}
+
+\begin{theorem}
+    \[ a \equiv b (\mod \ n) \Longleftrightarrow n | a-b\]
+\end{theorem}
+
+\begin{theorem}
+    If $ca \equiv cb (\mod n)$, then 
+    \[ a\equiv b \left (\mod \frac{n}{d} \right ), where  (c,n) = d \]
+    and conversely.
+\end{theorem}\label{Theorem.6}
+
+\begin{proposition}[properties of congruent]
+    \begin{enumerate}
+        \item $a\equiv a (\mod n)$
+        \item If $a\equiv b(\mod n)$, then $b\equiv a(\mod n)$
+        \item If $a\equiv b(\mod n)$ and $b\equiv c(\mod n)$, then $a\equiv c(\mod n)$
+        \item If $a\equiv b(\mod n)$ and $c\equiv d(\mod n)$, then $a\pm c \equiv b \pm d(\mod n)$.
+        \item If $a\equiv b(\mod n)$, then $ac \equiv bc(\mod n)$.
+        \item If $a\equiv b(\mod n)$ and $c\equiv d(\mod n)$, then $ac \equiv bc (\mod n)$.
+        \item If $a\equiv b(\mod n)$, then $f(a) \equiv f(b) (\mod n)$, when $f(x)$ is an integral function of $x$ (polynomial in $x$)
+        with integral coefficients.
+    \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+    If $a\equiv b(\mod n)$, then $\forall n\in \mathbb{N}$, 
+    \[a^k \equiv b^k (\mod n) \]    
+\end{corollary}
+
+
+\begin{theorem}
+    If $x_1, x_2,\ldots, x_n$ forms a complete system of residues mod $n$ ($n > 0$), then $ax_1 + b, \ldots, ax_n+b$ is also 
+    such a system, as long as $a$ and $b$ are integers and $(a, n) = 1$.
+\end{theorem}
+
+\begin{proof}
+    To prove the theorem, we just need to prove that 
+    \[ ax_i + b \not \equiv ax_j + b (\mod n)\ (i \ne j)     \]
+    Conversely, we let $ax_i + b\equiv ax_j + b (\mod n)$, by property (iv), we have $ax_i\equiv ax_j (\mod n)$, and because 
+    $(a, n) = 1$. By property (vi), we know $x_i \equiv x_j (\mod n)$. Finally, because ${x_1, x_2, \ldots, x_n }$ forms a complete 
+    system of residues mod n. We finally get $i = j$. 
+\end{proof}
+
+
+
+\begin{theorem}
+    If $a_1, a_2, \ldots, a_n$ are pairwise relatively prime integers, then a complete residue system mod $A$, where 
+    $A = a_1a_2\ldots a_n$, is obtained in the form 
+    \[ L(x_1, x_2, \ldots, x_n) = \frac{A}{a_1}c_1 x_1 + \frac{A}{a_2} c_2x_2+\cdots+\frac{A}{a_n}c_n x_n\] 
+    if the $x_i$ independently run through a complete residue system mod $a_i\ (i =1, 2,\ldots, n)$. Here the $c_i$
+    may be arbitary integers relatively prime to $a_i$.
+\end{theorem}\label{Theorem.8}
+
+\begin{proof}
+    The number of these $L$ values is $|A|$, because every $x_i$ runs through a complete residue system mod $a_i$ will produce 
+    $a_i$ values. So we just need to prove for every two $L$ when $x_i$ run through a complete residue system mod $a_i$, they have 
+    different congruent mod $A$.\\
+    To do this, we let
+    \[L(x_1, \ldots, x_n) \equiv L(x_1', \ldots, x_n') (\mod A) \]
+    A.K.A (as known as)
+    \[ \frac{A}{a_1}c_1 x_1 + \cdots + \frac{A}{a_n}c_n x_n \equiv \frac{A}{a_1}c_1 x_1' + \cdots + \frac{A}{a_n}c_n x_n' (\mod A)\]
+    Since $a_1 | A=a_1a_2\cdots a_n$
+    \[ \frac{A}{a_1}c_1 x_1 + \cdots + \frac{A}{a_n}c_n x_n \equiv \frac{A}{a_1}c_1 x_1' + \cdots + \frac{A}{a_n}c_n x_n' (\mod a_1)\]
+    and because $\frac{A}{a_i}c_i x_i \equiv 0 (\mod a_1)\ (i\ne 1)$
+    we  get 
+    \[ \frac{A}{a_1}c_1 x_1\equiv \frac{A}{a_1}c_1 x_1'\]
+    Moreover by theorem\ref{Theorem.6}, since $(c_1, a_1) = 1$ and $\left( \frac{A}{a_1}, a_1 \right)=1$, we get $x_1\equiv x_1' (\mod a_1)$
+    Exactly, as the same way above, we can get $x_i\equiv x_i'(\mod a_i)$ for all $i$.
+\end{proof}
+
+
+
+
+
+% By\ref*{Theorem.8}, a complete residue system mod $ab$ must have this forms
+% \[L(x,y) = bx + ay \]
+% where x, y seperately run through a complete residue system mod a and b.
+
+
+
+\begin{definition} [Euler Phi function]
+\[  
+    \varphi(n) := \#\{i(0\le i\le n-1)|(i, n) = 1\}
+\]
+    where \# means the element number of a set.
+\end{definition}
+
+
+\begin{theorem} [Fermat-Euler Theorem]
+    $\forall a \in \Z$, if$(a,n)=1$, then 
+    \[  a^{\varphi(n)} \equiv 1 (\mod n)\]
+    where $\varphi(n)$ is Euler-phi function. 
+\end{theorem}
+
+\begin{proof} [Fermat]
+    \begin{enumerate}
+        \item If $a = 1$, obviously $1^p = 1 \equiv 1(\bmod p)$
+        \item Assume for some $b\in \N$, $b^p\equiv b(\bmod p)$,
+        we just need to prove for $a = b+1$, we have $a^p\equiv a(\mod p)$. By binomial theorem, we have 
+        \[  
+        (b+1)^p = \sum_{i=0}^p
+        \z( \begin{array}{c}
+	p\\
+	i\\
+        \end{array} \y) 
+        b^i, \ 
+        where \z( \begin{array}{c}
+	p\\
+	i\\
+        \end{array} \y) = \frac{p(p-1)\cdots(p-i+1)}{i!}
+        \]
+        If $1\le i \le p-1$, then $p \z |\z( \begin{array}{c}
+	p\\
+	i\\
+        \end{array} \y) \y. $. Since 
+        \[  i! \z( \begin{array}{c}p\\i\\\end{array} \y)= p(p-1)(p-2)\cdots(p-i+1)\]
+        Naturally, we have 
+        \[  p \z |i! \z( \begin{array}{c}p\\i\\\end{array} \y) \y.\]
+        Since $p$ is a prime and $1\le i < p$, $(p, i!) = 1$, so we have 
+        \[  p \z |\z( \begin{array}{c}p\\i\\\end{array} \y) \y.\]
+        Finally
+        \begin{align*}
+            (b+1)^p &=\sum_{i=0}^p \z(\begin{array}{c}p\\i\\\end{array} \y) b^i\\
+                    &= b^p + 1 + \sum_{i=1}^{p-1}  \z(\begin{array}{c}p\\i\\\end{array} \y) b^i\\
+                    &\equiv b^p+1(\mod p)\\
+                    &\equiv b + 1(\mod p)
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    For given polynomial $f(x) = a_nx^n + a_{n-1}x^{n-1} + \cdots + a_0\in \Z [x]$, and prime $P$, meantime $a_n \not \equiv 0(\mod P)$, then 
+    \[  f(x) \equiv 0 (\mod P)\]
+    the numbers of root is less than or equal to $\mathrm{deg}f(x)=n$
+\end{theorem}
+%proof
+
+\begin{remark}
+    We mark $\Z/{p\Z}$ as $\F_p$, which means $\Z/{p\Z}$ is a \textbf{finite field}. And 
+    $\Z/{p\Z}$ presents a complete system of residues mod p.
+\end{remark}
+The above theorem can be equivalently described as below
+
+\begin{theorem} [Lagrange Theorem]
+    For given polynomial $f(x) = a_nx^n + a_{n-1}x^{n-1} + \cdots + a_0\in \F_p [x]$, and prime $P$, meantime $a_n \ne 0,\ \ in\ \F_p [x]$, then 
+    \[  f(x) = 0 , \ in\  \F_p [x]\]
+    the numbers of root is less than or equal to $\mathrm{deg}f(x)=n$
+\end{theorem}
+
+\begin{definition} [Equal]
+    Two integral polynomial
+    \[ f(x) = c_0 + c_1x + \cdots + c_kx^k\]
+    \[ g(x) = a_0 + a_1x + \cdots + a_lx^l\]
+    when $k=l$ and $c_i = a_i(\mod n)$ for $i = 0, 1, 2, \ldots, k$, we say $f(x)$ and $g(x)$ are congruent modulo n.
+    \[ f(x) \equiv g(x)  (\bmod n) \]
+\end{definition}
+
+\begin{theorem}
+    If $(a, n)=1$, then the congruence equations
+    \[ ax + b \equiv 0 (\bmod n)\]
+    exactly have one root$\mod n$.
+\end{theorem}
+
+\begin{proof} 
+    By \ref{Theorem.8} $ax + b$, when $x$ runs through a complete residue system mod n, its value exactly is equal to 0 once, so the solution of the equation is unique $\bmod n$.
+\end{proof}
+
+\begin{theorem} [Wilson Theorem]
+    If $p$ is a prime, then 
+    \[  (p-1)! \equiv -1 (\bmod p) \]
+\end{theorem}
+
+\begin{theorem}
+    Suppose $n\in \N$ and $n > 1$, then
+    \[  \mbox{n is a prime} \Longleftrightarrow (n-1)! \equiv -1(\bmod n)  \]
+\end{theorem}
+
+\begin{definition} [Carmichael number]
+    Suppose n is a composite number. If $\forall a \in \Z $ and $(a, n) = 1$, if the below equation is always established 
+    \[ a^{n-1} \equiv n(\bmod n) \]
+    then we call $n$ as a Carmichael number or a absolutely improper number.
+\end{definition}
+
+
+
+\begin{theorem} [Chinese Remainder Theorem]
+    Suppose that $n_1, n_2, \ldots ,n_k \in \N$ which are pairwise prime, and $a_1,a_2,\ldots, a_k\in \Z$. Let $v = n_1, n_2, \cdots, n_k$, then the first degree congruence equations exactly has one solution, and 
+    \[  
+    x \equiv M_1M_1^-a_1 + M_2M_2^-a_2+\cdots + M_kM_k^-a_k (\bmod v)
+    \]
+\end{theorem}
+
+\section{Quadratic residues}
+Next is some talking about the solution of a Quadratic congruent equation.
+\[ x^2 \equiv a(\bmod n) \]
+
+Suppose that $(a, n) = 1$, $a$ is any integer and $n$ is a natural number. Then $a$ is called a quadratic residue ($\bmod n)$ if the congruence $x^2\equiv a(\bmod n)$ is soluble; otherwise it is called a quadratic non-residue($\bmod n$).
+
+\begin{definition} [Legendre Symbol]
+\[  
+\z( \frac{a}{p} \y)=
+\begin{cases}
+    1, & if (a, p) = 1\  \text{and}\ \text{a is a quadratic residue}\bmod p. \\
+    -1, & if (a, p) = 1\ \text{and a is a quadratic non-residue}\bmod p \\
+    0, &p | a
+\end{cases}
+\]
+
+
+\end{definition}
+
+\begin{theorem}[Law of quadratic reciprocity]
+    If $p, q$ are odd primes, then 
+    \[  
+    \z( \frac{p}{q} \y) \z( \frac{q}{p} \y) = (-1)^{\frac{p-1}{2} \frac{q-1}{2}}
+    \]
+\end{theorem}
+
+\begin{theorem} [Euler's criterion]
+    If $p$ is an odd prime, then
+    \[
+    \z(\frac{a}{p}\y) \equiv a^{\frac{p-1}{2}} (\bmod p)
+    \]
+\end{theorem}
+
+
+\begin{property}
+    $\forall a, b\in \Z$,
+    \[
+        \z( \frac{ab}{p} \y) = \z( \frac{a}{p}\y) \z( \frac{b}{p}\y)
+    \]
+\end{property}
+
+
+\begin{lemma}[Gauss' Lemma]
+    Suppose $p$ is a prime, and $(a, p) = 1$. Further let $a_j$ be the numerically residue of $aj(\bmod p)$ for $j = 1, 2, ...$. Then Gauss's lemma states that 
+    \[  
+        \z( \frac{a}{p} = (-1)^l\y)
+    \]
+    where $l$ is the number of $j \le \frac{1}{2} (p-1)$ for which $a_j < 0$.
+\end{lemma}
+\section{Practice}
+
+
+
+\end{document}
